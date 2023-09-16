@@ -1,5 +1,6 @@
 .App {
-  text-align: center;
+  border: 1px solid #e5e5e5;
+  height: 100vh;
 }
 
 .App-logo {
@@ -14,14 +15,14 @@
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  background-color: #fff;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: #333;
+  height: 76px;
 }
 
 .App-link {
@@ -35,4 +36,75 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+
+main {
+  display: flex;
+  flex-direction: row;
+  border-top: 1px solid #e5e5e5;
+  width: 100%;
+  height: calc(100% - 76px);
+  font-size: 13px;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.fc-blue {
+  color: #0a66c2;
+}
+
+.note-list,
+.note-detail {
+  flex: 1;
+}
+
+.note-list {
+  border-right: 1px solid #e5e5e5;
+  overflow-y: scroll;
+  scrollbar-width: thin;
+}
+
+.note-list p {
+  margin: 5px 0;
+}
+
+.note-detail {
+  padding: 35px;
+}
+
+.p-15px {
+  padding: 15px;
+}
+
+.note-list::-webkit-scrollbar {
+  width: 12px;
+}
+
+.note-list::-webkit-scrollbar-track {
+  background-color: #e4e4e4;
+  /* border-radius: 100px; */
+}
+
+.note-list::-webkit-scrollbar-thumb {
+  border: 3px solid transparent;
+  border-radius: 50px;
+  background-color: #aaa;
+  background-clip: content-box;
 }
