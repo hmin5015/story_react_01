@@ -3,6 +3,7 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import './App.css';
+import Header from "./components/Header";
 
 function App() {
   const [notes, setNotes] = useState([]);
@@ -61,9 +62,7 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
-        <Typography variant="h3">MY NOTE</Typography>
-      </header>
+      <Header />
       <main>
         <section className="note-list">
           <ul>

@@ -14,16 +14,7 @@
   }
 }
 
-.App-header {
-  background-color: #fff;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: #333;
-  height: 76px;
-}
+
 
 .App-link {
   color: #61dafb;
@@ -62,10 +53,6 @@ ul {
   padding: 0;
 }
 
-li {
-  border-bottom: 1px solid #e5e5e5;
-}
-
 .fc-blue {
   color: #0a66c2;
 }
@@ -91,6 +78,10 @@ li {
 
 .p-15px {
   padding: 15px;
+}
+
+.note-list ul li {
+  border-bottom: 1px solid #e5e5e5;
 }
 
 .note-list::-webkit-scrollbar {
