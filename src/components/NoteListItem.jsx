@@ -15,7 +15,7 @@ const NoteListItem = ({ note }) => {
   }
 
   note = { ...defaultNote, ...note };
-  
+
   const AddToNote = () => {
     setNoteItem(note)
   }
@@ -24,7 +24,7 @@ const NoteListItem = ({ note }) => {
     <li>
       <article className="p-15px" onClick={AddToNote}>
         <Typography variant="subtitle1" display="block" lineHeight={1.5} gutterBottom className="fc-blue">
-          {note.title === "" || note.title === null || note.title === undefined ? "제목없음" : note.title}
+          {note.title === "" ? "제목없음" : note.title}
         </Typography>
         <Typography variant="overline" display="block" lineHeight={1.5} gutterBottom>
           {note.userId}

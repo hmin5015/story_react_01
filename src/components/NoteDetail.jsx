@@ -1,9 +1,8 @@
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { useRecoilValue } from 'recoil'
 import { NoteAtom } from '../recoil/NoteAtom'
-import './NoteDetail.css'
+import FloatingActionButtons from "./common/FloatingButton";
 
 const NoteDetail = ({ handleAddNote }) => {
   let noteItem = useRecoilValue(NoteAtom)
@@ -21,16 +20,34 @@ const NoteDetail = ({ handleAddNote }) => {
 
   return (
     <>
-    <ArrowBackIcon />
       <Typography variant={"h5"} display={"block"}  paddingLeft={1} gutterBottom>
         {noteItem.title === "" ? "제목없음" : noteItem.title}
       </Typography>
       <Typography variant={"overline"} display={"block"}  paddingLeft={1} gutterBottom>
         {"노트작성일: " + noteItem?.createdAt}
       </Typography>
-      <Button variant = "contained" type="button" onClick={() => handleAddNote()}>
-        Add Note
+      <Button 
+        style={{
+          borderRadius: 25,
+          textTransform: "none"
+        }}
+        variant="contained" 
+        type="button"
+      >
+        {"Cancel"}
       </Button>
+      <FloatingActionButtons 
+        style={{
+          position: "absolute",
+          top: "25px",
+          right: "5px",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center"
+        }}
+        handleAddNote={handleAddNote}
+      />
     </>
   )
 }

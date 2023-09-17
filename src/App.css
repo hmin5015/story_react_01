@@ -36,9 +36,7 @@ ul {
 }
 
 .note-detail {
+  position: relative;
   flex: 1;
-}
-
-.note-detail {
   padding: 35px;
 }

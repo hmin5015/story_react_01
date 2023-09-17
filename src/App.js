@@ -75,6 +75,7 @@ function App() {
                   setTitle={setTitle}
                   setContent={setContent}
                   handleSubmit={handleSubmit}
+                  handleCancel={() => setIsAddNote(false)}
                 />
               )
             }
