@@ -1,6 +1,46 @@
+.note-detail {
+  border-right: 1px solid #e5e5e5;
+  overflow-y: scroll;
+  scrollbar-width: thin;
+}
+
+.note-detail h5 {
+  max-width: 90%;
+}
+
+.note-detail p {
+  margin: 5px 0;
+}
+
+.note-detail ul li {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.note-detail::-webkit-scrollbar {
+  width: 12px;
+}
+
+.note-detail::-webkit-scrollbar-track {
+  background-color: #e4e4e4;
+}
+
+.note-detail::-webkit-scrollbar-thumb {
+  border: 3px solid transparent;
+  border-radius: 50px;
+  background-color: #aaa;
+  background-clip: content-box;
+}
+
 .item-icons-wrapper {
   display: flex;
   align-items: center !important;
   line-height: normal;
   margin-bottom: 7px;;
+}
+
+.note {
+  display: flex;
+  align-content: center;
+  line-height: 1.8;
+  text-wrap: wrap;
 }

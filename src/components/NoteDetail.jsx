@@ -83,7 +83,7 @@ const NoteDetail = ({ handleAddNote }) => {
                 {"Note"}
               </Typography>
               <Typography variant={"overline"} display={"block"} gutterBottom>
-                <div style={{ display: "flex", alignContent: "center" }}>
+                <div className="note">
                   {noteItem?.content}
                 </div>
               </Typography>

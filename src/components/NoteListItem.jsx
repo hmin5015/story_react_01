@@ -39,7 +39,7 @@ const NoteListItem = ({ note, selectedNoteId }) => {
           수정일: {FormatDate(note.updatedAt)}
         </Typography>
         <Typography variant="overline" display="block" lineHeight={1.5} gutterBottom>
-          {note.content.length ? (note.content.length > 250 ? note.content.substring(0, 250) + "..." : note.content) : "컨텐츠 없음"}
+          {note.content.length ? (note.content.length > 150 ? note.content.substring(0, 150) + "..." : note.content) : "컨텐츠 없음"}
         </Typography>
       </article>
     </li>
