@@ -1,0 +1,32 @@
+.note-list {
+  flex: 1;
+}
+
+.note-list {
+  border-right: 1px solid #e5e5e5;
+  overflow-y: scroll;
+  scrollbar-width: thin;
+}
+
+.note-list p {
+  margin: 5px 0;
+}
+
+.note-list ul li {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.note-list::-webkit-scrollbar {
+  width: 12px;
+}
+
+.note-list::-webkit-scrollbar-track {
+  background-color: #e4e4e4;
+}
+
+.note-list::-webkit-scrollbar-thumb {
+  border: 3px solid transparent;
+  border-radius: 50px;
+  background-color: #aaa;
+  background-clip: content-box;
+}
