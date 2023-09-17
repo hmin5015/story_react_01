@@ -15,7 +15,7 @@ const NoteDetail = ({ handleAddNote }) => {
 
   const FormatDate = (dateString) => {
     if (dateString!== undefined) {
-      const date = new Date(noteItem?.createdAt);
+      const date = new Date(dateString);
       return formatDistance(new Date(), date, { addSuffix: true, locale: enUS })
     }
     return "미정"
@@ -31,7 +31,7 @@ const NoteDetail = ({ handleAddNote }) => {
               {noteItem.title === "" ? "제목없음" : noteItem.title}
             </Typography>
             <Typography variant={"overline"} display={"block"} textTransform={"none"} color={"#555"} gutterBottom>
-              <span>Ingram Micro · Irvine, CA (Hybrid)  1 week ago  · 30 applicants</span>
+              <span>모바일게임 · 150 Likes · 5,000 Views</span>
             </Typography>
             <Typography variant={"overline"} display={"block"} gutterBottom>
               <div className="item-icons-wrapper">
@@ -42,7 +42,7 @@ const NoteDetail = ({ handleAddNote }) => {
             <Typography variant={"overline"} display={"block"} gutterBottom>
               <div className="item-icons-wrapper">
                 <EditCalendarIcon fontSize="medium" htmlColor="#555" />
-                <span style={{ paddingLeft: "5px" }}>{FormatDate(noteItem?.createdAt)}</span>
+                <span style={{ paddingLeft: "5px" }}>{FormatDate(noteItem?.updatedAt)}</span>
               </div>
             </Typography>
             <Typography variant={"overline"} display={"block"} gutterBottom>

@@ -1,6 +1,10 @@
 import Typography from "@mui/material/Typography"
 import { useRecoilState } from 'recoil'
 import { NoteAtom } from '../recoil/NoteAtom'
+import NumbersIcon from '@mui/icons-material/Numbers';
+import DateRangeIcon from '@mui/icons-material/DateRange';
+import EditCalendarIcon from '@mui/icons-material/EditCalendar';
+import Face5Icon from '@mui/icons-material/Face5';
 import './NoteListItem.css'
 import { formatDistance } from 'date-fns'
 import { es, ru, enUS } from 'date-fns/locale'
@@ -14,7 +18,7 @@ const NoteListItem = ({ note, selectedNoteId }) => {
 
   const FormatDate = (dateString) => {
     if (dateString!== undefined) {
-      const date = new Date(note?.createdAt);
+      const date = new Date(dateString);
       return formatDistance(new Date(), date, { addSuffix: true, locale: enUS })
     }
     return "미정"
@@ -27,20 +31,32 @@ const NoteListItem = ({ note, selectedNoteId }) => {
           {note.title === "" ? "제목없음" : note.title}
         </Typography>
         <Typography variant="overline" display="block" lineHeight={1.5} gutterBottom>
-          유저번호: {note.userId}
+          <div className="item-icons-wrapper">
+            <NumbersIcon fontSize="small" htmlColor="#555" />
+            <span style={{ paddingLeft: "5px" }}>{note?.noteId}</span>
+          </div>
         </Typography>
         <Typography variant="overline" display="block" lineHeight={1.5} gutterBottom>
-          노트번호: {note.noteId}
+          <div className="item-icons-wrapper">
+            <Face5Icon fontSize="small" htmlColor="#555" />
+            <span style={{ paddingLeft: "5px" }}>{note?.userId}</span>
+          </div>
         </Typography>
         <Typography variant="overline" display="block" lineHeight={1.5} gutterBottom>
-          생성일: {FormatDate(note.createdAt)}
+          <div className="item-icons-wrapper">
+            <DateRangeIcon fontSize="small" htmlColor="#555" />
+            <span style={{ paddingLeft: "5px" }}>{FormatDate(note?.createdAt)}</span>
+          </div>
         </Typography>
         <Typography variant="overline" display="block" lineHeight={1.5} gutterBottom>
-          수정일: {FormatDate(note.updatedAt)}
+          <div className="item-icons-wrapper">
+            <EditCalendarIcon fontSize="small" htmlColor="#555" />
+            <span style={{ paddingLeft: "5px" }}>{FormatDate(note?.updatedAt)}</span>
+          </div>
         </Typography>
-        <Typography variant="overline" display="block" lineHeight={1.5} gutterBottom>
+        {/* <Typography variant="overline" display="block" lineHeight={1.5} gutterBottom>
           {note.content.length ? (note.content.length > 150 ? note.content.substring(0, 150) + "..." : note.content) : "컨텐츠 없음"}
-        </Typography>
+        </Typography> */}
       </article>
     </li>
   )

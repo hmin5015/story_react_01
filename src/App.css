@@ -40,3 +40,32 @@ ul {
   flex: 1;
   padding: 25px;
 }
+
+@media (max-width: 820px) {
+  main {
+    flex-direction: column;
+  }
+
+  .note-list {
+    flex: none !important;
+  }
+
+  .note-list ul {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .note-list ul article {
+    width: 350px;
+  }
+}
+
+@media (min-width: 821px) {
+  main {
+    flex-direction: row;
+  }
+
+  .note-list {
+    flex: 1 1 !important;
+  }
+}
