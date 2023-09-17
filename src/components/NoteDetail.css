@@ -1,0 +1,6 @@
+.item-icons-wrapper {
+  display: flex;
+  align-items: center !important;
+  line-height: normal;
+  margin-bottom: 7px;;
+}

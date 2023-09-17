@@ -1,5 +1,7 @@
-import React, { Suspense, lazy, useState, useEffect } from "react";
-import "./App.css";
+import React, { Suspense, lazy, useState, useEffect } from "react"
+import { useRecoilState } from "recoil"
+import { NoteAtom } from "./recoil/NoteAtom"
+import "./App.css"
 
 const Header = lazy(() => import('./components/common/Header'))
 const NoteList = lazy(() => import('./components/NoteList'))
@@ -11,6 +13,7 @@ function App() {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [isAddNote, setIsAddNote] = useState(false)
+  const [, setNoteItem] = useRecoilState(NoteAtom);
 
   const API_URL = process.env.REACT_APP_AWS_NOTE_API;
   const USER_ID = process.env.REACT_APP_AWS_NOTE_USER_ID;
@@ -19,10 +22,13 @@ function App() {
     const fetchNotes = async () => {
       try {
         const response = await fetch(`${API_URL}notes?userId=${USER_ID}`);
-        const data = await response.json();
-        setNotes(data);
+        if (response.ok) {
+          const data = await response.json()
+          setNotes(data)
+          setNoteItem(data[0])      
+        }
       } catch (error) {
-        console.log(error);
+        console.log(error)
       }
     };
     fetchNotes();

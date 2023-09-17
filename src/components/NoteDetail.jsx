@@ -3,39 +3,93 @@ import Button from "@mui/material/Button";
 import { useRecoilValue } from 'recoil'
 import { NoteAtom } from '../recoil/NoteAtom'
 import FloatingActionButtons from "./common/FloatingButton";
+import DateRangeIcon from '@mui/icons-material/DateRange';
+import EditCalendarIcon from '@mui/icons-material/EditCalendar';
+import Face5Icon from '@mui/icons-material/Face5';
+import { formatDistance } from 'date-fns'
+import { es, ru, enUS } from 'date-fns/locale'
+import './NoteDetail.css'
 
 const NoteDetail = ({ handleAddNote }) => {
   let noteItem = useRecoilValue(NoteAtom)
 
-  const defaultNote = {
-    noteId: "발번되지 않음",
-    userId: "발번되지 않음",
-    title: "제목없음",
-    content: "내용없음",
-    createdAt: "미정",
-    updatedAt: "미정",
+  const FormatDate = (dateString) => {
+    if (dateString!== undefined) {
+      const date = new Date(noteItem?.createdAt);
+      return formatDistance(new Date(), date, { addSuffix: true, locale: enUS })
+    }
+    return "미정"
   }
-
-  noteItem = { ...defaultNote, ...noteItem };
 
   return (
     <>
-      <Typography variant={"h5"} display={"block"}  paddingLeft={1} gutterBottom>
-        {noteItem.title === "" ? "제목없음" : noteItem.title}
-      </Typography>
-      <Typography variant={"overline"} display={"block"}  paddingLeft={1} gutterBottom>
-        {"노트작성일: " + noteItem?.createdAt}
-      </Typography>
-      <Button 
-        style={{
-          borderRadius: 25,
-          textTransform: "none"
-        }}
-        variant="contained" 
-        type="button"
-      >
-        {"Cancel"}
-      </Button>
+      {noteItem === undefined 
+        ? <div>노트를 선택해 주세요.</div> 
+        :
+          <>
+            <Typography variant={"h5"} display={"block"} marginBottom={0} gutterBottom>
+              {noteItem.title === "" ? "제목없음" : noteItem.title}
+            </Typography>
+            <Typography variant={"overline"} display={"block"} textTransform={"none"} color={"#555"} gutterBottom>
+              <span>Ingram Micro · Irvine, CA (Hybrid)  1 week ago  · 30 applicants</span>
+            </Typography>
+            <Typography variant={"overline"} display={"block"} gutterBottom>
+              <div className="item-icons-wrapper">
+                <DateRangeIcon fontSize="medium" htmlColor="#555" />
+                <span style={{ paddingLeft: "5px" }}>{FormatDate(noteItem?.createdAt)}</span>
+              </div>
+            </Typography>
+            <Typography variant={"overline"} display={"block"} gutterBottom>
+              <div className="item-icons-wrapper">
+                <EditCalendarIcon fontSize="medium" htmlColor="#555" />
+                <span style={{ paddingLeft: "5px" }}>{FormatDate(noteItem?.createdAt)}</span>
+              </div>
+            </Typography>
+            <Typography variant={"overline"} display={"block"} gutterBottom>
+              <div className="item-icons-wrapper">
+                <Face5Icon fontSize="medium" htmlColor="#555" />
+                <span style={{ paddingLeft: "5px" }}>{noteItem?.userId}</span>
+              </div>
+            </Typography>
+            <section style={{ display: "flex", margin: "15px 0px" }}>
+              <Button 
+                style={{
+                  borderRadius: 25,
+                  textTransform: "none",
+                  border: "1px solid #0a66c2",
+                }}
+                variant="contained" 
+                type="button"
+              >
+                {"저장하기"}
+              </Button>
+              <Button 
+                style={{
+                  borderRadius: 25,
+                  textTransform: "none",
+                  backgroundColor: "#FFF",
+                  color: "#0a66c2",
+                  border: "1px solid #0a66c2",
+                  marginLeft: "7px"
+                }}
+                variant="contained" 
+                type="button"
+              >
+                {"취소하기"}
+              </Button>
+            </section>
+            <div>
+              <Typography variant={"subtitle1"} display={"block"} gutterBottom>
+                {"Note"}
+              </Typography>
+              <Typography variant={"overline"} display={"block"} gutterBottom>
+                <div style={{ display: "flex", alignContent: "center" }}>
+                  {noteItem?.content}
+                </div>
+              </Typography>
+            </div>
+          </>
+      }
       <FloatingActionButtons 
         style={{
           position: "absolute",

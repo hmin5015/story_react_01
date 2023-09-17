@@ -9,6 +9,6 @@ export const NoteSelector = selector({
   key: "NoteSelector",
   get: ({ get }) => {
     const CurrentNote = get(NoteAtom);
-    return CurrentNote.length.toLocaleString();
+    return CurrentNote.noteId;
   },
 });
