@@ -74,7 +74,7 @@ function App() {
         <Header />
         <main>
           <NoteList notes={notes} />
-          <section className="note-detail">
+          {/* <section className="note-detail">
             {
               isAddNote && (
                 <NoteModal
@@ -86,7 +86,7 @@ function App() {
               )
             }
             {!isAddNote && <NoteDetail handleAddNote={() => setIsAddNote(true)} />}
-          </section>
+          </section> */}
         </main>
      </Suspense>
     </div>

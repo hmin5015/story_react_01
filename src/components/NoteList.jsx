@@ -23,11 +23,11 @@ const NoteList = ({ notes }) => {
 
   return (
     <section className="note-list">
-      <ul>
+      <div className="grid-container"> 
         {sortedNotes.map(note => (
           <NoteListItem note={note} key={note.noteId} selectedNoteId={selectedNoteId} />
         ))}
-      </ul>
+      </div>
     </section>
   )
 }

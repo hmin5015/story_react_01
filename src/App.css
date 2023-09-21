@@ -14,9 +14,7 @@ h6 {
 main {
   display: flex;
   flex-direction: row;
-  border-top: 1px solid #e5e5e5;
   width: 100%;
-  height: calc(100% - 50px);
   font-size: 13px;
 }
 

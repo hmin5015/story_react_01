@@ -1,11 +1,19 @@
-.note-list {
-  flex: 1;
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr); 
+  grid-auto-rows: minmax(100px, auto); 
+  gap: 20px; 
+}
+
+.grid-item {
+  background-color: #fff;
+  border-radius: 7px;
+  cursor: pointer;
+  box-shadow: 5px 5px 5px #F2F2F2;
 }
 
 .note-list {
-  border-right: 1px solid #e5e5e5;
-  overflow-y: scroll;
-  scrollbar-width: thin;
+  margin: 0 35px 35px;
 }
 
 .note-list p {
@@ -16,17 +24,12 @@
   border-bottom: 1px solid #e5e5e5;
 }
 
-.note-list::-webkit-scrollbar {
-  width: 12px;
+.note-item-wrapper {
+  position: relative;
 }
 
-.note-list::-webkit-scrollbar-track {
-  background-color: #e4e4e4;
-}
-
-.note-list::-webkit-scrollbar-thumb {
-  border: 3px solid transparent;
-  border-radius: 50px;
-  background-color: #aaa;
-  background-clip: content-box;
+.item-icons-wrapper {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
 }
