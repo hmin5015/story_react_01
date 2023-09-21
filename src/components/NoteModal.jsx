@@ -1,7 +1,7 @@
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import './NoteModal.css'
+import './NoteModal.scss'
 
 const NoteModal = ({ setTitle, setContent, handleSubmit, handleCancel }) => {
   return (

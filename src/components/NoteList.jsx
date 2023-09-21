@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
-import './NoteList.css'
 import NoteListItem from "./NoteListItem"
 import { useRecoilValue } from 'recoil'
 import { NoteSelector } from '../recoil/NoteAtom'
+import './NoteList.scss'
 
 const NoteList = ({ notes }) => {
   const selectedNoteId = useRecoilValue(NoteSelector);

@@ -7,8 +7,8 @@ import DateRangeIcon from '@mui/icons-material/DateRange';
 import EditCalendarIcon from '@mui/icons-material/EditCalendar';
 import Face5Icon from '@mui/icons-material/Face5';
 import { formatDistance } from 'date-fns'
-import { es, ru, enUS } from 'date-fns/locale'
-import './NoteDetail.css'
+import { enUS } from 'date-fns/locale'
+import './NoteDetail.scss'
 
 const NoteDetail = ({ handleAddNote }) => {
   let noteItem = useRecoilValue(NoteAtom)

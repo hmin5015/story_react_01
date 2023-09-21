@@ -1,10 +1,3 @@
-.grid-container {
-  display: grid;
-  grid-template-columns: repeat(1, 1fr); 
-  grid-auto-rows: minmax(100px, auto); 
-  gap: 20px; 
-}
-
 .grid-item {
   background-color: #fff;
   border-radius: 7px;
@@ -14,14 +7,21 @@
 
 .note-list {
   margin: 0 35px 35px;
-}
 
-.note-list p {
-  margin: 5px 0;
-}
+  & p {
+    margin: 5px 0;
+  }
 
-.note-list ul li {
-  border-bottom: 1px solid #e5e5e5;
+  & ul li {
+    border-bottom: 1px solid #e5e5e5;
+  }
+
+  & .grid-container {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-auto-rows: minmax(100px, auto);
+    gap: 20px;
+  }
 }
 
 .note-item-wrapper {

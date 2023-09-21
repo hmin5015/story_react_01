@@ -1,7 +1,7 @@
 import React, { Suspense, lazy, useState, useEffect } from "react"
 import { useRecoilState } from "recoil"
 import { NoteAtom } from "./recoil/NoteAtom"
-import "./App.css"
+import "./App.scss"
 
 const Header = lazy(() => import('./components/common/Header'))
 const NoteList = lazy(() => import('./components/NoteList'))
