@@ -38,7 +38,7 @@ const NoteListItem = ({ note, selectedNoteId }) => {
         /> */}
         <div className="note-item-wrapper" style={{ padding: "15px" }}>
           <Typography variant="overline" display="block" lineHeight={1.5} fontSize="12px" fontWeight={400} letterSpacing={-.5} color={"gray"} gutterBottom>
-            {"나만의 레시피"}
+            {"노트정리"}
           </Typography>
           <Typography variant="overline" display="block" lineHeight={1.5} fontSize="20px" fontWeight={400} letterSpacing={-.5} gutterBottom>
             {note.title === "" ? "제목없음" : note.title}
@@ -48,7 +48,7 @@ const NoteListItem = ({ note, selectedNoteId }) => {
               JM
             </div>
             <div style={{ marginLeft: "5px" }}>
-              <div>가시장미연화</div>
+              <div>{note.userId}</div>
               <div style={{ fontSize: "12px", color: "#777" }}>{FormatDate(note?.createdAt)}<span style={{ marginLeft: "7px" }}>조회 946</span></div>
             </div>
           </article>

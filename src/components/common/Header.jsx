@@ -11,10 +11,10 @@ const menus = [
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
-  borderRadius: theme.shape.borderRadius,
-  backgroundColor: alpha(theme.palette.common.white, 100.0),
+  borderRadius: "25px",
+  backgroundColor: alpha(theme.palette.common.white, 0.90),
   "&:hover": {
-    backgroundColor: alpha(theme.palette.common.white, 100.0),
+    backgroundColor: alpha(theme.palette.common.white, 0.90),
   },
   marginRight: theme.spacing(1),
   marginLeft: 0,
@@ -27,7 +27,7 @@ const Search = styled("div")(({ theme }) => ({
 }));
 
 const SearchIconWrapper = styled("div")(({ theme }) => ({
-  padding: theme.spacing(0, 0.5),
+  padding: theme.spacing(0, 1.1),
   height: "100%",
   position: "absolute",
   pointerEvents: "none",
@@ -92,12 +92,12 @@ const Header = () => {
           />
         </Search>
       </section>
-      <section className="header-filter-section">
+      <section className="header-filter-section" style={{ marginTop: "10px" }}>
         <ul>
-          <li>전체</li>
-          <li>아이방</li>
-          <li>서재</li>
-          <li>주방</li>
+          <li style={{ fontSize: "14px", border: "1px solid #E5E5E5", borderRadius: "25px", margin: "0px 5px", padding: "7px 12px", backgroundColor: "#0a66c2", color: "#FFF" }}>#전체</li>
+          <li style={{ fontSize: "14px", border: "1px solid #E5E5E5", borderRadius: "25px", margin: "0px 5px", padding: "7px 12px", backgroundColor: "#FFF" }}>#노트</li>
+          <li style={{ fontSize: "14px", border: "1px solid #E5E5E5", borderRadius: "25px", margin: "0px 5px", padding: "7px 12px", backgroundColor: "#FFF" }}>#알림</li>
+          <li style={{ fontSize: "14px", border: "1px solid #E5E5E5", borderRadius: "25px", margin: "0px 5px", padding: "7px 12px", backgroundColor: "#FFF" }}>#할일</li>
         </ul>
       </section>
     </header>
