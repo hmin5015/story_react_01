@@ -11,7 +11,8 @@ const NoteDetail = lazy(() => import('./components/NoteDetail'))
 const ACTION = {
   NOTES: 'note',
   TITLE: 'title',
-
+  CONTENT: 'content',
+  IS_ADD_NOTE: 'is_add_note'
 }
 
 const reducer = (state, action) => {
@@ -20,21 +21,21 @@ const reducer = (state, action) => {
       return { ...state, notes: action.payload }
     case ACTION.TITLE:
       return { ...state, title: state.title}
+    case ACTION.CONTENT:
+      return { ...state, content: state.content }
+    case ACTION.IS_ADD_NOTE:
+      return { ...state, isAddNote: state.isAddNote }
     default:
       throw new Error()
   }
 
 }
 function App() {
-  const [state, dispatch] = useReducer(reducer, { notes: [], title: '' })
-  // const [notes, setNotes] = useState([]);
-  // const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
-  const [isAddNote, setIsAddNote] = useState(false)
-  const [, setNoteItem] = useRecoilState(NoteAtom);
+  const [state, dispatch] = useReducer(reducer, { notes: [], title: '', content: '', isAddNote: false })
+  const [, setNoteItem] = useRecoilState(NoteAtom)
 
-  const API_URL = process.env.REACT_APP_AWS_NOTE_API;
-  const USER_ID = process.env.REACT_APP_AWS_NOTE_USER_ID;
+  const API_URL = process.env.REACT_APP_AWS_NOTE_API
+  const USER_ID = process.env.REACT_APP_AWS_NOTE_USER_ID
 
   const fetchNotes = useMemo(() => {
     return async () => {
@@ -61,7 +62,7 @@ function App() {
         const requestBody = {
           userId: USER_ID,
           title: state.title,
-          content: content,
+          content: state.content,
         };
         console.log(requestBody);
         const requestOptions = {
@@ -97,7 +98,7 @@ function App() {
           <NoteList notes={state.notes} />
           {/* <section className="note-detail">
             {
-              isAddNote && (
+              state.isAddNote && (
                 <NoteModal
                   setTitle={setTitle}
                   setContent={setContent}
