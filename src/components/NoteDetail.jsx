@@ -1,6 +1,6 @@
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-import { useRecoilValue } from 'recoil'
+import { useRecoilValue, useRecoilState } from 'recoil'
 import { NoteAtom } from '../recoil/NoteAtom'
 import FloatingActionButtons from "./common/FloatingButton";
 import DateRangeIcon from '@mui/icons-material/DateRange';
@@ -11,7 +11,8 @@ import { enUS } from 'date-fns/locale'
 import './NoteDetail.scss'
 
 const NoteDetail = ({ handleAddNote }) => {
-  let noteItem = useRecoilValue(NoteAtom)
+  let currentNote = useRecoilValue(NoteAtom)
+  const [noteItem, setNoteItem] = useRecoilState(NoteAtom)
 
   const FormatDate = (dateString) => {
     if (dateString!== undefined) {
@@ -23,12 +24,12 @@ const NoteDetail = ({ handleAddNote }) => {
 
   return (
     <>
-      {noteItem === undefined 
+      {currentNote === undefined 
         ? <div>노트를 선택해 주세요.</div> 
         :
           <>
             <Typography variant={"h5"} display={"block"} marginBottom={0} gutterBottom>
-              {noteItem.title === "" ? "제목없음" : noteItem.title}
+              {currentNote.title === "" ? "제목없음" : currentNote.title}
             </Typography>
             <Typography variant={"overline"} display={"block"} textTransform={"none"} color={"#555"} gutterBottom>
               <span>모바일게임 · 150 Likes · 5,000 Views</span>
@@ -36,19 +37,19 @@ const NoteDetail = ({ handleAddNote }) => {
             <Typography variant={"overline"} display={"block"} gutterBottom>
               <div className="item-icons-wrapper">
                 <DateRangeIcon fontSize="medium" htmlColor="#555" />
-                <span style={{ paddingLeft: "5px" }}>{FormatDate(noteItem?.createdAt)}</span>
+                <span style={{ paddingLeft: "5px" }}>{FormatDate(currentNote?.createdAt)}</span>
               </div>
             </Typography>
             <Typography variant={"overline"} display={"block"} gutterBottom>
               <div className="item-icons-wrapper">
                 <EditCalendarIcon fontSize="medium" htmlColor="#555" />
-                <span style={{ paddingLeft: "5px" }}>{FormatDate(noteItem?.updatedAt)}</span>
+                <span style={{ paddingLeft: "5px" }}>{FormatDate(currentNote?.updatedAt)}</span>
               </div>
             </Typography>
             <Typography variant={"overline"} display={"block"} gutterBottom>
               <div className="item-icons-wrapper">
                 <Face5Icon fontSize="medium" htmlColor="#555" />
-                <span style={{ paddingLeft: "5px" }}>{noteItem?.userId}</span>
+                <span style={{ paddingLeft: "5px" }}>{currentNote?.userId}</span>
               </div>
             </Typography>
             <section style={{ display: "flex", margin: "15px 0px" }}>
@@ -74,6 +75,7 @@ const NoteDetail = ({ handleAddNote }) => {
                 }}
                 variant="contained" 
                 type="button"
+                onClick={() => setNoteItem()}
               >
                 {"취소하기"}
               </Button>
@@ -84,7 +86,7 @@ const NoteDetail = ({ handleAddNote }) => {
               </Typography>
               <Typography variant={"overline"} display={"block"} gutterBottom>
                 <div className="note">
-                  {noteItem?.content}
+                  {currentNote?.content}
                 </div>
               </Typography>
             </div>
