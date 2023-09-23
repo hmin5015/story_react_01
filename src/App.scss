@@ -1,5 +1,5 @@
 .App {
-  height: 100vh;
+  height: 100%;
 }
 
 h1,
@@ -14,8 +14,9 @@ h6 {
 main {
   display: flex;
   flex-direction: row;
-  width: 100%;
+  width: calc(100% - 40px);
   font-size: 13px;
+  margin: 20px;
 }
 
 ul {
