@@ -52,7 +52,15 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 const Nav = () => {
   return (
     <nav>
-      <section className="header-search-section">
+      <section style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", marginBottom: "25px" }}>
+        <article style={{ fontSize: "17px", margin: "5px 0px", fontWeight: "300" }}>
+          총 <span style={{ fontSize: "25px", margin: "5px 0px", fontWeight: "600" }}>250</span> 개의 노트가 조회되었습니다
+        </article>
+        <article style={{ fontSize: "14px", margin: "5px 0px", fontWeight: "300" }}>
+          원하시는 <span style={{ fontSize: "14px", margin: "5px 0px", fontWeight: "600" }}>#검색어</span> 를 입력하세요
+        </article>
+      </section>
+      <section className="header-search-section">        
         <Search>
           <SearchIconWrapper>
             <SearchIcon />
@@ -65,10 +73,10 @@ const Nav = () => {
       </section>
       <section className="header-filter-section" style={{ marginTop: "10px" }}>
         <ul>
-          <li style={{ fontSize: "14px", border: "1px solid #E5E5E5", borderRadius: "25px", margin: "0px 5px", padding: "7px 12px", backgroundColor: "#0a66c2", color: "#FFF" }}>#전체</li>
-          <li style={{ fontSize: "14px", border: "1px solid #E5E5E5", borderRadius: "25px", margin: "0px 5px", padding: "7px 12px", backgroundColor: "#FFF" }}>#노트</li>
-          <li style={{ fontSize: "14px", border: "1px solid #E5E5E5", borderRadius: "25px", margin: "0px 5px", padding: "7px 12px", backgroundColor: "#FFF" }}>#알림</li>
-          <li style={{ fontSize: "14px", border: "1px solid #E5E5E5", borderRadius: "25px", margin: "0px 5px", padding: "7px 12px", backgroundColor: "#FFF" }}>#할일</li>
+          <li style={{ fontSize: "14px", border: "1px solid #333", borderRadius: "25px", margin: "0px 5px", padding: "7px 12px", backgroundColor: "#000", color: "#FFF" }}>#전체</li>
+          <li style={{ fontSize: "14px", border: "1px solid #333", borderRadius: "25px", margin: "0px 5px", padding: "7px 12px", backgroundColor: "#FFF" }}>#노트</li>
+          <li style={{ fontSize: "14px", border: "1px solid #333", borderRadius: "25px", margin: "0px 5px", padding: "7px 12px", backgroundColor: "#FFF" }}>#알림</li>
+          <li style={{ fontSize: "14px", border: "1px solid #333", borderRadius: "25px", margin: "0px 5px", padding: "7px 12px", backgroundColor: "#FFF" }}>#할일</li>
         </ul>
       </section>
     </nav>

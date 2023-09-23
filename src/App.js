@@ -44,8 +44,8 @@ function App() {
   });
   const [, setNoteItem] = useRecoilState(NoteAtom);
 
-  const API_URL = process.env.REACT_APP_AWS_NOTE_API;
-  const USER_ID = process.env.REACT_APP_AWS_NOTE_USER_ID;
+  const API_URL = process.env.REACT_APP_AWS_API;
+  const USER_ID = process.env.REACT_APP_AWS_USER_ID;
 
   const fetchNotes = useMemo(() => {
     return async () => {

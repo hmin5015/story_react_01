@@ -14,8 +14,11 @@ const Header = () => {
         <div className="header-aside">
           <div className="header-logo">
             <Link to={"/"}>
-              <Typography variant="overline" fontSize={"10px"} fontWeight={500} lineHeight={2} textTransform={"none"}>
-                {"Sp"}
+              <Typography variant="overline" fontSize={"20px"} fontWeight={900} color={"#000"} lineHeight={2} letterSpacing={"-.01rem"} textTransform={"none"}>
+                {"SPACE"}
+              </Typography>
+              <Typography variant="overline" fontSize={"20px"} fontWeight={500} color={"#333"} lineHeight={2} letterSpacing={"-.01rem"} textTransform={"none"} paddingLeft={"3px"}>
+                {"Note"}
               </Typography>
             </Link>
           </div>
