@@ -14,6 +14,7 @@ header {
     flex-direction: row;
     align-items: baseline;
     width: 100%;
+    height: 55px;
 
     & .header-aside {
       position: absolute;
@@ -28,6 +29,11 @@ header {
         display: flex;
         justify-content: center;
         align-items: center;
+
+        & a {
+          display: inline-flex;
+          text-decoration: none;
+        }
       }
     }
 
@@ -61,27 +67,12 @@ header {
           display: flex;
           justify-content: center;
           align-items: center;
+
+          & a {
+            display: inline-flex;
+            text-decoration: none;
+          }
         }
-      }
-    }
-  }
-
-  & .header-search-section {
-    width: 15em;
-    border: 1px solid rgb(10, 102, 194);
-    border-radius: 25px;
-    margin-top: 100px;
-    background-color: #fff;
-  }
-
-  & .header-filter-section {
-
-    & ul {
-      display: flex;
-      flex-direction: row;
-
-      & li {
-
       }
     }
   }

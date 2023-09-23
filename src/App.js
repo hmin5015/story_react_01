@@ -1,41 +1,51 @@
-import React, { Suspense, lazy, useState, useEffect, useMemo, useReducer } from "react"
-import { useRecoilState } from "recoil"
-import { NoteAtom } from "./recoil/NoteAtom"
-import "./App.scss"
+import React, { Suspense, useEffect, useMemo, useReducer, lazy } from "react";
+import { Route, Routes, Navigate } from "react-router-dom";
+import { useRecoilState } from "recoil";
+import { NoteAtom } from "./recoil/NoteAtom";
+import "./App.scss";
 
-const Header = lazy(() => import('./components/common/Header'))
-const NoteList = lazy(() => import('./components/NoteList'))
-const NoteModal = lazy(() => import('./components/NoteModal'))
-const NoteDetail = lazy(() => import('./components/NoteDetail'))
+const Layout = React.lazy(() => import("./components/common/Layout"));
+const Home = lazy(() => import("./components/Home"));
+const Logs = lazy(() => import("./components/Logs"));
+const Missing = lazy(() => import("./components/Missing"));
 
 const ACTION = {
-  NOTES: 'note',
-  TITLE: 'title',
-  CONTENT: 'content',
-  IS_ADD_NOTE: 'is_add_note'
-}
+  NOTES: "note",
+  TITLE: "title",
+  CONTENT: "content",
+  IS_ADD_NOTE: "is_add_note",
+  SEARCH: "search",
+};
 
 const reducer = (state, action) => {
   switch (action.type) {
     case ACTION.NOTES:
-      return { ...state, notes: action.payload }
+      return { ...state, notes: action.payload };
     case ACTION.TITLE:
-      return { ...state, title: state.title}
+      return { ...state, title: state.title };
     case ACTION.CONTENT:
-      return { ...state, content: state.content }
+      return { ...state, content: state.content };
     case ACTION.IS_ADD_NOTE:
-      return { ...state, isAddNote: state.isAddNote }
+      return { ...state, isAddNote: state.isAddNote };
+    case ACTION.SEARCH:
+      return { ...state, search: action.payload };
     default:
-      throw new Error()
+      throw new Error();
   }
+};
 
-}
 function App() {
-  const [state, dispatch] = useReducer(reducer, { notes: [], title: '', content: '', isAddNote: false })
-  const [, setNoteItem] = useRecoilState(NoteAtom)
+  const [state, dispatch] = useReducer(reducer, {
+    notes: [],
+    title: "",
+    content: "",
+    isAddNote: false,
+    search: "",
+  });
+  const [, setNoteItem] = useRecoilState(NoteAtom);
 
-  const API_URL = process.env.REACT_APP_AWS_NOTE_API
-  const USER_ID = process.env.REACT_APP_AWS_NOTE_USER_ID
+  const API_URL = process.env.REACT_APP_AWS_NOTE_API;
+  const USER_ID = process.env.REACT_APP_AWS_NOTE_USER_ID;
 
   const fetchNotes = useMemo(() => {
     return async () => {
@@ -53,7 +63,7 @@ function App() {
   }, [API_URL, USER_ID, setNoteItem]);
 
   useEffect(() => {
-    fetchNotes()
+    fetchNotes();
   }, [fetchNotes]);
 
   const handleSubmit = () => {
@@ -78,7 +88,10 @@ function App() {
 
         if (response.ok) {
           const newNote = await response.json();
-          dispatch({ type: ACTION.NOTES, payload: ((prevNotes) => [...prevNotes, newNote]) });
+          dispatch({
+            type: ACTION.NOTES,
+            payload: (prevNotes) => [...prevNotes, newNote],
+          });
         } else {
           console.error("Request failed with status:", response.status);
         }
@@ -93,24 +106,15 @@ function App() {
   return (
     <div className="App">
       <Suspense fallback={<div>Loading...</div>}>
-        <Header />
-        <main>
-          <NoteList notes={state.notes} />
-          {/* <section className="note-detail">
-            {
-              state.isAddNote && (
-                <NoteModal
-                  setTitle={setTitle}
-                  setContent={setContent}
-                  handleSubmit={handleSubmit}
-                  handleCancel={() => setIsAddNote(false)}
-                />
-              )
-            }
-            {!isAddNote && <NoteDetail handleAddNote={() => setIsAddNote(true)} />}
-          </section> */}
-        </main>
-     </Suspense>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Home notes={state.notes} />} />
+            <Route path="logs" element={<Logs />} />
+            <Route path="*" element={<Missing />} />
+          </Route>
+          <Route path="/*" element={<Navigate to="/" />} />
+        </Routes>
+      </Suspense>
     </div>
   );
 }

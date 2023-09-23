@@ -36,7 +36,7 @@ const NoteList = ({ notes }) => {
             <NoteListItem note={note} key={note.noteId} selectedNoteId={selectedNoteId} />
           ))}
         </div>
-        <p>더보기</p>
+        <div>더보기</div>
       </section>
       {/* {noteItem &&
         <section className="note-detail">
