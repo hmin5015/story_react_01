@@ -5,7 +5,7 @@ nav {
   justify-content: center;
   padding: 10px 15px;
   background-color: #FFF;
-  z-index: 1;
+  z-index: 100;
 
   &.sticky {
     position: sticky;

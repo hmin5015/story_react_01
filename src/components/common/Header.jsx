@@ -2,6 +2,9 @@ import { useState, useEffect } from 'react'
 import Typography from "@mui/material/Typography"
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
+import { useRecoilState } from 'recoil'
+import { UserInfoAtom } from '../../recoil/UserInfoAtom'
+import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined'
 import './Header.scss';
 
 const menus = [
@@ -18,6 +21,7 @@ const Header = () => {
   const { t, i18n } = useTranslation()
   const [locale, setShowLocale] = useState(false)
   const [isHeaderFixed, setIsHeaderFixed] = useState(false)
+  const [, setIsUserInfoOpen] = useRecoilState(UserInfoAtom)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -83,10 +87,8 @@ const Header = () => {
               </article>
             </li>
           </ul>
-          <div className="header-user-info">
-            <Typography variant="overline" fontSize={"15px"} fontWeight={700} lineHeight={2} textTransform={"none"} letterSpacing={-0.5}>
-              {"Jm"}
-            </Typography>
+          <div className="header-user-info" onClick={() => setIsUserInfoOpen(true)}>          
+            <AccountCircleOutlinedIcon fontSize="medium" htmlColor="#777" />
           </div>
         </div>
       </section>

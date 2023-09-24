@@ -10,7 +10,6 @@ const NoteList = ({ notes }) => {
   const [noteItem, ] = useRecoilState(NoteAtom)
   const [sortedNotes, setSortedNotes] = useState([])
 
-  // 계산 결과를 기억하고 매번 다시 계산되지 않도록 함
   // Compute sortedNotes2 using useMemo
   const memorizedSortedNotes = useMemo(() => {
     return [...notes].sort((a, b) => {
@@ -36,7 +35,7 @@ const NoteList = ({ notes }) => {
             <NoteListItem note={note} key={note.noteId} selectedNoteId={selectedNoteId} />
           ))}
         </div>
-        <div>더보기</div>
+        {sortedNotes.length > 10 && <div>더보기</div>}
       </section>
       {/* {noteItem &&
         <section className="note-detail">

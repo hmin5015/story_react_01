@@ -37,7 +37,7 @@ const NoteListItem = ({ note, selectedNoteId }) => {
                 <FavoriteBorderIcon fontSize="medium" htmlColor="#777" />
               </div>
             </Typography>
-            <Typography variant={"overline"} display={"block"} paddingLeft={2} gutterBottom>
+            <Typography variant={"overline"} display={"block"} paddingLeft={2} zIndex={1} gutterBottom>
               <div className="item-icons-wrapper">
                 <EditNoteIcon fontSize="medium" htmlColor="#777" />
               </div>

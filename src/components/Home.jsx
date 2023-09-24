@@ -50,8 +50,6 @@ const Home = () => {
           const data = await response.json();
           dispatch({ type: ACTION.NOTES, payload: data });
           setNoteItem(data[0]);
-          console.log("APP 화면에서 데이터를 호출합니다")
-          console.log(data)
         }
       } catch (error) {
         console.log(error);
