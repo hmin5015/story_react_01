@@ -53,7 +53,7 @@ const Header = () => {
                       {Object.keys(locales).map((locale) => (
                         <li key={locale} style={{ justifyContent: "flex-start", padding: "5px 0px", borderRadius: "5px", backgroundColor: i18n.resolvedLanguage === locale ? '#F2F2F2' : '#FFF' }}>
                           <button 
-                            style={{ fontWeight: i18n.resolvedLanguage === locale ? '600px' : '300px', border: "none", backgroundColor: "transparent" }} 
+                            style={{ fontWeight: i18n.resolvedLanguage === locale ? '600px' : '300px', border: "none", backgroundColor: "transparent", cursor: "pointer" }} 
                             type="submit" 
                             onClick={() => i18n.changeLanguage(locale)}
                           >

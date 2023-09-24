@@ -2,6 +2,7 @@ import React, { lazy, Suspense } from 'react'
 import ReactDOM from 'react-dom/client'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { RecoilRoot } from "recoil"
+import "./i18n"
 import "./index.scss"
 
 const App = lazy(() => import("./App"))

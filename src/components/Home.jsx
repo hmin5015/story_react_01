@@ -1,34 +1,104 @@
-import React, { lazy, useReducer } from "react"
+import React, { lazy, useEffect, useMemo, useReducer } from "react"
+import { useRecoilState } from "recoil"
+import { NoteAtom } from "../recoil/NoteAtom"
 
 const NoteList = lazy(() => import('./NoteList'))
 
 const ACTION = {
-  NOTES: 'note',
-  TITLE: 'title',
-  CONTENT: 'content',
-  IS_ADD_NOTE: 'is_add_note',
-  SEARCH: 'search'
-}
+  NOTES: "note",
+  TITLE: "title",
+  CONTENT: "content",
+  IS_ADD_NOTE: "is_add_note",
+  SEARCH: "search",
+};
 
 const reducer = (state, action) => {
   switch (action.type) {
     case ACTION.NOTES:
-      return { ...state, notes: action.payload }
+      return { ...state, notes: action.payload };
     case ACTION.TITLE:
-      return { ...state, title: state.title}
+      return { ...state, title: state.title };
     case ACTION.CONTENT:
-      return { ...state, content: state.content }
+      return { ...state, content: state.content };
     case ACTION.IS_ADD_NOTE:
-      return { ...state, isAddNote: state.isAddNote }
+      return { ...state, isAddNote: state.isAddNote };
     case ACTION.SEARCH:
-      return { ...state, search: action.payload }
+      return { ...state, search: action.payload };
     default:
-      throw new Error()
+      throw new Error();
   }
 }
 
-const Home = ({ notes }) => {
-  const [state, dispatch] = useReducer(reducer, { notes: notes, title: '', content: '', isAddNote: false, search: '' })
+const Home = () => {
+  const [state, dispatch] = useReducer(reducer, {
+    notes: [],
+    title: "",
+    content: "",
+    isAddNote: false,
+    search: "",
+  });
+  const [, setNoteItem] = useRecoilState(NoteAtom);
+
+  const API_URL = process.env.REACT_APP_AWS_API;
+  const USER_ID = process.env.REACT_APP_AWS_USER_ID;
+
+  const fetchNotes = useMemo(() => {
+    return async () => {
+      try {
+        const response = await fetch(`${API_URL}notes?userId=${USER_ID}`);
+        if (response.ok) {
+          const data = await response.json();
+          dispatch({ type: ACTION.NOTES, payload: data });
+          setNoteItem(data[0]);
+          console.log("APP 화면에서 데이터를 호출합니다")
+          console.log(data)
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+  }, [API_URL, USER_ID, setNoteItem]);
+
+  useEffect(() => {
+    fetchNotes();
+  }, [fetchNotes]);
+
+  const handleSubmit = () => {
+    const createNote = async () => {
+      try {
+        const requestBody = {
+          userId: USER_ID,
+          title: state.title,
+          content: state.content,
+        };
+        console.log(requestBody);
+        const requestOptions = {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Origin: "*",
+          },
+          body: JSON.stringify(requestBody),
+        };
+
+        const response = await fetch(`${API_URL}note`, requestOptions);
+
+        if (response.ok) {
+          const newNote = await response.json();
+          dispatch({
+            type: ACTION.NOTES,
+            payload: (prevNotes) => [...prevNotes, newNote],
+          });
+        } else {
+          console.error("Request failed with status:", response.status);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    createNote();
+  };
 
   return (
     <main>

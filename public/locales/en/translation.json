@@ -7,6 +7,19 @@
     "menu": {
       "1": "LOGS",
       "2": "MY INFO"
+    },
+    "nav": {
+      "info": {
+        "message":  {
+          "first": "A total of ",
+          "second": " note(s) have been retrieved."
+        },
+        "subMessage": {
+          "first": "Please enter the desired ",
+          "second": ".",
+          "search": "SEARCH TERM"
+        }
+      }
     }
   }
 }

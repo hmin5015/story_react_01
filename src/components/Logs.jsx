@@ -22,15 +22,13 @@ const Logs = () => {
   const API_URL = process.env.REACT_APP_AWS_API;
   const USER_NAME = process.env.REACT_APP_AWS_USER_NAME;
 
-  const fetchNotes = useMemo(() => {
+  const fetchLogs = useMemo(() => {
     return async () => {
       try {
         const response = await fetch(`${API_URL}useractivitylogs?UserName=${USER_NAME}`);
         if (response.ok) {
           const data = await response.json();
           dispatch({ type: ACTION.LOGS, payload: data });
-          // setNoteItem(data[0]);
-          console.log(data)
         }
       } catch (error) {
         console.log(error);
@@ -39,8 +37,8 @@ const Logs = () => {
   }, [API_URL, USER_NAME]);
 
   useEffect(() => {
-    fetchNotes();
-  }, [fetchNotes]);
+    fetchLogs();
+  }, [fetchLogs]);
 
   return (
     <main>

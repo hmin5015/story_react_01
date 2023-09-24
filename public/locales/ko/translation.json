@@ -7,6 +7,19 @@
     "menu": {
       "1": "로그",
       "2": "내정보"
+    },
+    "nav": {
+      "info": {
+        "message":  {
+          "first": "총 ",
+          "second": " 개의 노트가 조회되었습니다."
+        },
+        "subMessage": {
+          "first": "원하시는 ",
+          "second": "를 입력하세요.",
+          "search": "검색어"
+        }
+      }
     }
   }
 }

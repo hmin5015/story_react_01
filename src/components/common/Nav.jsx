@@ -1,6 +1,7 @@
-import SearchIcon from "@mui/icons-material/Search";
-import InputBase from "@mui/material/InputBase";
-import { styled, alpha } from "@mui/material/styles";
+import SearchIcon from "@mui/icons-material/Search"
+import InputBase from "@mui/material/InputBase"
+import { styled, alpha } from "@mui/material/styles"
+import { useTranslation } from 'react-i18next'
 import './Nav.scss'
 
 const Search = styled("div")(({ theme }) => ({
@@ -50,14 +51,20 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 const Nav = () => {
+  const { t, i18n } = useTranslation()
+
   return (
     <nav>
       <section style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", marginBottom: "25px" }}>
         <article style={{ fontSize: "17px", margin: "5px 0px", fontWeight: "300" }}>
-          총 <span style={{ fontSize: "25px", margin: "5px 0px", fontWeight: "600" }}>250</span> 개의 노트가 조회되었습니다
+          {t('header.nav.info.message.first')}
+          <span style={{ fontSize: "25px", margin: "5px 0px", fontWeight: "600" }}>250</span>
+          {t('header.nav.info.message.second')}
         </article>
         <article style={{ fontSize: "14px", margin: "5px 0px", fontWeight: "300" }}>
-          원하시는 <span style={{ fontSize: "14px", margin: "5px 0px", fontWeight: "600" }}>#검색어</span> 를 입력하세요
+          {t('header.nav.info.subMessage.first')}
+          <span style={{ fontSize: "14px", margin: "5px 0px", fontWeight: "600" }}>#{t('header.nav.info.subMessage.search')}</span>
+          {t('header.nav.info.subMessage.second')}
         </article>
       </section>
       <section className="header-search-section">        
