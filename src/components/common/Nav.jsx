@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import SearchIcon from "@mui/icons-material/Search"
 import InputBase from "@mui/material/InputBase"
 import { styled, alpha } from "@mui/material/styles"
@@ -61,18 +61,35 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 const Nav = () => {
   const { t, i18n } = useTranslation()
   const [activeHashTag, setActiveHashTag] = useState(0)
+  const [isHeaderFixed, setIsHeaderFixed] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        setIsHeaderFixed(true);
+      } else {
+        setIsHeaderFixed(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   return (
-    <nav>
-      <section style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", marginBottom: "25px" }}>
-        <article style={{ fontSize: "17px", margin: "5px 0px", fontWeight: "300" }}>
+    <nav className={`header ${isHeaderFixed ? 'sticky' : ''}`}>
+      <section style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", marginBottom: "15px" }}>
+        <article style={{ fontSize: "15px", margin: "5px 0px", fontWeight: "300" }}>
           {t('header.nav.info.message.first')}
-          <span style={{ fontSize: "25px", margin: "5px 0px", fontWeight: "600" }}>250</span>
+          <span style={{ fontSize: "22px", fontWeight: "600", color: "#00754A" }}>250</span>
           {t('header.nav.info.message.second')}
         </article>
-        <article style={{ fontSize: "14px", margin: "5px 0px", fontWeight: "300" }}>
+        <article style={{ fontSize: "13px", fontWeight: "300" }}>
           {t('header.nav.info.subMessage.first')}
-          <span style={{ fontSize: "14px", margin: "5px 0px", fontWeight: "600" }}>#{t('header.nav.info.subMessage.search')}</span>
+          <span style={{ fontSize: "15px", fontWeight: "600" }}>#{t('header.nav.info.subMessage.search')}</span>
           {t('header.nav.info.subMessage.second')}
         </article>
       </section>

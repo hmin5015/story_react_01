@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Typography from "@mui/material/Typography"
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
@@ -17,17 +17,34 @@ const locales = {
 const Header = () => {
   const { t, i18n } = useTranslation()
   const [locale, setShowLocale] = useState(false)
+  const [isHeaderFixed, setIsHeaderFixed] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        setIsHeaderFixed(true);
+      } else {
+        setIsHeaderFixed(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   return (
-    <header>
+    <header className={`header ${isHeaderFixed ? 'sticky' : ''}`}>
       <section className="header-top-section">
         <div className="header-aside">
           <div className="header-logo">
             <Link to={"/"}>
-              <Typography variant="overline" fontSize={"20px"} fontWeight={900} color={"#000"} lineHeight={2} letterSpacing={"-.01rem"} textTransform={"none"}>
+              <Typography variant="overline" fontSize={"18px"} fontWeight={900} color={"#000"} lineHeight={2} letterSpacing={"-.01rem"} textTransform={"none"}>
                 {t('header.logo.first')}
               </Typography>
-              <Typography variant="overline" fontSize={"20px"} fontWeight={500} color={"#333"} lineHeight={2} letterSpacing={"-.01rem"} textTransform={"none"} paddingLeft={"3px"}>
+              <Typography variant="overline" fontSize={"18px"} fontWeight={500} color={"#000"} lineHeight={2} letterSpacing={"-.01rem"} textTransform={"none"} paddingLeft={"3px"}>
                 {t('header.logo.second')}
               </Typography>
             </Link>

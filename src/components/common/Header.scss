@@ -1,25 +1,32 @@
 header {
-  position: relative;
-  background-color: transparent;
+  background-color: #fff;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: #333;
-  margin: 0px 15px 25px;
+  padding: 0 15px;
+  transition: all 0.9s ease;
+  z-index: 2;
+
+  &.sticky {
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    transition: all 0.9s ease;
+  }
 
   & .header-top-section {
     display: flex;
     flex-direction: row;
-    align-items: baseline;
+    align-items: center;
+    justify-content: space-between;
     width: 100%;
     height: 55px;
 
     & .header-aside {
-      position: absolute;
-      top: 15px;
-      left: 0px;
 
       & .header-logo {
         display: flex;
@@ -36,9 +43,6 @@ header {
     & .header-info {
       display: flex;
       flex-direction: row;
-      position: absolute;
-      top: 15px;
-      right: 0px;
 
       & .header-user-info {
         background-color: #fff;

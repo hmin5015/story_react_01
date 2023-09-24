@@ -1,9 +1,11 @@
 import Typography from "@mui/material/Typography"
 import { useRecoilState } from 'recoil'
 import { NoteAtom } from '../recoil/NoteAtom'
-import './NoteListItem.scss'
 import { formatDistance } from 'date-fns'
 import { enUS } from 'date-fns/locale'
+import EditNoteIcon from '@mui/icons-material/EditNote'
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
+import './NoteListItem.scss'
 
 const NoteListItem = ({ note, selectedNoteId }) => {
   const [, setNoteItem] = useRecoilState(NoteAtom)
@@ -21,17 +23,32 @@ const NoteListItem = ({ note, selectedNoteId }) => {
   }
 
   return (
-    <div className="grid-item" style={{ backgroundColor: note.noteId === selectedNoteId ? "#D7E9FB" : "#FFF"}}>
-      <article onClick={AddToNote}>
+    <div 
+      className="grid-item" 
+      style={{ 
+        backgroundColor: note.noteId === selectedNoteId ? "#E5EFEC" : "#FFF",
+        border: note.noteId === selectedNoteId ? "2px solid #00754A" : "2px solid transparent"
+      }}
+    >
+      <article style={{ position: "relative" }} onClick={AddToNote}>
+        <div className="note-action-wrapper" style={{ position: "absolute", top: "0px", right: "10px", display: "flex", flexDirection: "row" }}>
+            <Typography variant={"overline"} display={"block"} paddingLeft={2} gutterBottom>
+              <div className="item-icons-wrapper">
+                <FavoriteBorderIcon fontSize="medium" htmlColor="#777" />
+              </div>
+            </Typography>
+            <Typography variant={"overline"} display={"block"} paddingLeft={2} gutterBottom>
+              <div className="item-icons-wrapper">
+                <EditNoteIcon fontSize="medium" htmlColor="#777" />
+              </div>
+            </Typography>
+        </div>
         <div className="note-item-wrapper" style={{ padding: "15px" }}>
-          <Typography variant="overline" display="block" lineHeight={1.5} fontSize="12px" fontWeight={400} letterSpacing={-.5} color={"gray"} gutterBottom>
-            {"노트정리"}
-          </Typography>
-          <Typography variant="overline" display="block" lineHeight={1.5} fontSize="20px" fontWeight={400} letterSpacing={-.5} gutterBottom>
+          <Typography variant="overline" display="block" lineHeight={1.5} fontSize="14px" fontWeight={600} letterSpacing={-.5} maxWidth={"75%"} gutterBottom>
             {note.title === "" ? "제목없음" : note.title}
           </Typography>
-          <article style={{ display: "flex", flexDirection: "row", margin: "15px 0px" }}>
-            <div style={{ backgroundColor: "#EC5C03", color: "#FFF", width: "30px", height: "30px" , border: "1px solid #E5E5E5", borderRadius: "25px", display: "flex", alignItems: "center", justifyContent: "center" }}>
+          <article style={{ display: "flex", flexDirection: "row", margin: "5px  0px 15px 0px" }}>
+            <div style={{ backgroundColor: "#00754A", color: "#FFF", width: "30px", height: "30px" , border: "1px solid #00754A", borderRadius: "25px", display: "flex", alignItems: "center", justifyContent: "center" }}>
               JM
             </div>
             <div style={{ marginLeft: "5px" }}>
