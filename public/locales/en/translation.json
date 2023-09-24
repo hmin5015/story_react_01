@@ -1,0 +1,12 @@
+{
+  "header": {
+    "logo": {
+      "first": "SPACE",
+      "second": "Note"
+    },
+    "menu": {
+      "1": "LOGS",
+      "2": "MY INFO"
+    }
+  }
+}

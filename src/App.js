@@ -1,8 +1,9 @@
-import React, { Suspense, useEffect, useMemo, useReducer, lazy } from "react";
-import { Route, Routes, Navigate } from "react-router-dom";
-import { useRecoilState } from "recoil";
-import { NoteAtom } from "./recoil/NoteAtom";
-import "./App.scss";
+import React, { Suspense, useEffect, useMemo, useReducer, lazy } from "react"
+import { Route, Routes, Navigate } from "react-router-dom"
+import { useRecoilState } from "recoil"
+import { NoteAtom } from "./recoil/NoteAtom"
+import { useTranslation } from "react-i18next"
+import "./App.scss"
 
 const Layout = React.lazy(() => import("./components/common/Layout"));
 const Home = lazy(() => import("./components/Home"));
@@ -32,7 +33,12 @@ const reducer = (state, action) => {
     default:
       throw new Error();
   }
-};
+}
+
+const locales = {
+  en: { title: "English" },
+  lv: { title: "Korean" },
+}
 
 function App() {
   const [state, dispatch] = useReducer(reducer, {
@@ -43,6 +49,8 @@ function App() {
     search: "",
   });
   const [, setNoteItem] = useRecoilState(NoteAtom);
+
+  const { t, i18n } = useTranslation();
 
   const API_URL = process.env.REACT_APP_AWS_API;
   const USER_ID = process.env.REACT_APP_AWS_USER_ID;
