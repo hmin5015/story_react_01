@@ -19,6 +19,12 @@
           "second": ".",
           "search": "SEARCH TERM"
         }
+      },
+      "hashtag": {
+        "0": "ALL",
+        "1": "NOTE",
+        "2": "ALARM",
+        "3": "TODO"
       }
     }
   }

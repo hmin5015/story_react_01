@@ -1,8 +1,16 @@
+import { useState } from 'react'
 import SearchIcon from "@mui/icons-material/Search"
 import InputBase from "@mui/material/InputBase"
 import { styled, alpha } from "@mui/material/styles"
 import { useTranslation } from 'react-i18next'
 import './Nav.scss'
+
+const hashTags = [
+  { id: 1, hashTag: '#전체' },
+  { id: 2, hashTag: '#노트' },
+  { id: 3, hashTag: '#알림' },
+  { id: 4, hashTag: '#할일' }
+]
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -52,6 +60,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 const Nav = () => {
   const { t, i18n } = useTranslation()
+  const [activeHashTag, setActiveHashTag] = useState(0)
 
   return (
     <nav>
@@ -80,10 +89,23 @@ const Nav = () => {
       </section>
       <section className="header-filter-section" style={{ marginTop: "10px" }}>
         <ul>
-          <li style={{ fontSize: "14px", border: "1px solid #333", borderRadius: "25px", margin: "0px 5px", padding: "7px 12px", backgroundColor: "#000", color: "#FFF" }}>#전체</li>
-          <li style={{ fontSize: "14px", border: "1px solid #333", borderRadius: "25px", margin: "0px 5px", padding: "7px 12px", backgroundColor: "#FFF" }}>#노트</li>
-          <li style={{ fontSize: "14px", border: "1px solid #333", borderRadius: "25px", margin: "0px 5px", padding: "7px 12px", backgroundColor: "#FFF" }}>#알림</li>
-          <li style={{ fontSize: "14px", border: "1px solid #333", borderRadius: "25px", margin: "0px 5px", padding: "7px 12px", backgroundColor: "#FFF" }}>#할일</li>
+          {hashTags.map((hashTag, index) => (
+            <li 
+              key={hashTag.id}
+              style={{ 
+                fontSize: "14px", 
+                border: "1px solid #333", 
+                borderRadius: "25px", 
+                margin: "0px 5px", 
+                padding: "7px 12px", 
+                backgroundColor: activeHashTag === index ? "#000" : "#FFF", 
+                color: activeHashTag === index ? "#FFF" : "#000"
+              }}
+              onClick={() => setActiveHashTag(index)}
+            >
+              #{t(`header.nav.hashtag.${index}`)}
+            </li>
+          ))}
         </ul>
       </section>
     </nav>
