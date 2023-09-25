@@ -1,6 +1,7 @@
 import React, { lazy, useEffect, useMemo, useReducer } from "react"
 import { useRecoilState } from "recoil"
 import { NoteAtom } from "../recoil/NoteAtom"
+import axios from 'axios';
 
 const NoteList = lazy(() => import('./NoteList'))
 
@@ -57,8 +58,64 @@ const Home = () => {
     };
   }, [API_URL, USER_ID, setNoteItem]);
 
+  // const createUserActivityLog = useMemo(() => {
+  //   return async () => {
+  //     try {
+  //       const requestBody = {
+  //         logDate: "2023-09-23T23:55:24.959Z",
+  //         deviceInfo: {
+  //             deviceBrand: "Apple",
+  //             deviceModel: "iPhone X",
+  //             deviceType: "Mobile"
+  //         },
+  //         country: "United States",
+  //         logType: 2000,
+  //         content: "태스트트",
+  //         ipAddress: "104.109.0.3",
+  //         userName: "현우우"
+  //       }
+        
+  //       // const requestOptions = {
+  //       //   method: "POST",
+  //       //   headers: {
+  //       //     "Content-Type": "application/json",
+  //       //     Origin: ['http://localhost:3000', 'https://story-react-01.vercel.app/'],
+  //       //   },
+  //       //   body: JSON.stringify(requestBody),
+  //       // }
+
+  //       // const response = await fetch(`${API_URL}useractivitylogs`, requestOptions)
+  //       //   .then((res) => res.json())
+  //       //   .then((data) => {
+  //       //     console.log({ responseMessage: data.message })
+  //       //   })
+  //       //   .catch((error) => {
+  //       //     console.error('Error', error)
+  //       //   })
+
+  //       // const requestBody = {
+  //       //   userId: "ed18a094-0589-47bf-be16-6b2754421aed",
+  //       //   noteId: "3",
+  //       //   title: "TEST",
+  //       //   content: "TEST"
+  //       // }
+
+  //       const response = await axios.post(`${API_URL}useractivitylogs`, requestBody);
+
+  //       if (response.ok) {
+  //         await response.json();
+  //       } else {
+  //         console.error('Failed to create user activity log');
+  //       }
+  //     } catch (error) {
+  //       console.log(error)
+  //     }
+  //   }
+  // }, [API_URL])
+
   useEffect(() => {
-    fetchNotes();
+    fetchNotes()
+    // createUserActivityLog()
   }, [fetchNotes]);
 
   const handleSubmit = () => {

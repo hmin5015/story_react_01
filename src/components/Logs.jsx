@@ -20,12 +20,11 @@ const Logs = () => {
   });
 
   const API_URL = process.env.REACT_APP_AWS_API;
-  const USER_NAME = process.env.REACT_APP_AWS_USER_NAME;
 
   const fetchLogs = useMemo(() => {
     return async () => {
       try {
-        const response = await fetch(`${API_URL}useractivitylogs?UserName=${USER_NAME}`);
+        const response = await fetch(`${API_URL}useractivitylogs?startDate=2023-09-01T00:00:00&endDate=2023-09-30T23:59:59`);
         if (response.ok) {
           const data = await response.json();
           dispatch({ type: ACTION.LOGS, payload: data });
@@ -34,7 +33,7 @@ const Logs = () => {
         console.log(error);
       }
     };
-  }, [API_URL, USER_NAME]);
+  }, [API_URL]);
 
   useEffect(() => {
     fetchLogs();
@@ -45,7 +44,7 @@ const Logs = () => {
       <section>
         <ul>
           {state.logs.map((log) => (
-            <li key={log.UserActivityLogId}>
+            <li key={log.userActivityLogId}>
               <article style={{ marginTop: "20px" }}>
                 <div style={{ display: "flex", flexDirection: "column" }}>
                   <div style={{ display: "flex", flexDirection: "row"}}>
@@ -57,17 +56,17 @@ const Logs = () => {
                     </div>
                     <div style={{ width: "calc(100% - 35px)" }}>
                       <div style={{ marginBottom: "3px" }}>
-                        <span style={{ color: "#000", paddingRight: "7px" }}>{log.UserName}</span>
-                        <span style={{ color: "#777" }}>{"관리자"} {log.DeviceInfo.DeviceType}</span>
+                        <span style={{ color: "#000", paddingRight: "7px" }}>{log.userName}</span>
+                        <span style={{ color: "#777" }}>{"관리자"} {log.deviceInfo.deviceType}</span>
                       </div>
                       <div style={{ marginBottom: "7px" }}>
-                        <span  style={{ color: "#37B36E" }}>{"529k views "}</span>{FormatDate(log.LogDate)}
+                        <span  style={{ color: "#37B36E" }}>{"529k views "}</span>{FormatDate(log.logDate)}
                       </div> 
                       <div style={{ marginBottom: "3px" }}>
-                        {`${log.DeviceInfo.DeviceBrand} ${log.DeviceInfo.DeviceModel} `}
+                        {`${log.deviceInfo.deviceBrand} ${log.deviceInfo.deviceModel} `}
                       </div>
                       <div style={{ marginBottom: "3px" }}>
-                        {log.Content}
+                        {log.content}
                       </div>
                     </div>
                   </div>
