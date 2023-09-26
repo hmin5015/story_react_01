@@ -65,6 +65,39 @@ header {
             display: inline-flex;
             text-decoration: none;
           }
+
+          & .locale-wrapper {            
+            display: inline-flex;
+            position: relative;
+
+            & .locale-popup-wrapper {              
+              position: absolute;
+              top: 30px;
+              right: 0px;
+              border: 1px solid #CCC;
+              border-radius: 5px;
+              padding: 10px;
+              background-color: #FFF;
+              width: max-content;
+
+              & ul {                
+                display: flex;
+                flex-direction: column;
+
+                & li {                  
+                  justify-content: flex-start;
+                  padding: 5px 0px;
+                  border-radius: 5px;
+
+                  & .locale-button {                    
+                    border: none;
+                    background-color: transparent;
+                    cursor: pointer;
+                  }
+                }
+              }
+            }
+          }
         }
       }
     }

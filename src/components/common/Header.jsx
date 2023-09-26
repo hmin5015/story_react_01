@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react'
-import Typography from "@mui/material/Typography"
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useRecoilState } from 'recoil'
 import { UserInfoAtom } from '../../recoil/UserInfoAtom'
+import Typography from "@mui/material/Typography"
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined'
 import './Header.scss';
 
@@ -64,17 +64,18 @@ const Header = () => {
               </li>
             ))}        
             <li>
-              <article style={{ position: "relative", display: "inline-flex" }}>
+              <article className="locale-wrapper">
                 <Typography variant="overline" paddingLeft={1.5} onClick={() => setShowLocale(!locale)}>
                   {i18n.resolvedLanguage === "ko" ? "한국어" : "English"}
                 </Typography>
                 {locale &&
-                  <div style={{ position: "absolute", top: "30px", border: "1px solid #CCC", borderRadius: "5px", right: "0px", padding: "10px", background: "#FFF", width: "max-content" }}>
-                    <ul style={{ display: "flex", flexDirection: "column" }}>
+                  <div className="locale-popup-wrapper">
+                    <ul>
                       {Object.keys(locales).map((locale) => (
-                        <li key={locale} style={{ justifyContent: "flex-start", padding: "5px 0px", borderRadius: "5px", backgroundColor: i18n.resolvedLanguage === locale ? '#F2F2F2' : '#FFF' }}>
+                        <li key={locale} style={{ backgroundColor: i18n.resolvedLanguage === locale ? '#F2F2F2' : '#FFF' }}>
                           <button 
-                            style={{ fontWeight: i18n.resolvedLanguage === locale ? '600px' : '300px', border: "none", backgroundColor: "transparent", cursor: "pointer" }} 
+                            className="locale-button"
+                            style={{ fontWeight: i18n.resolvedLanguage === locale ? '600px' : '300px' }} 
                             type="submit" 
                             onClick={() => i18n.changeLanguage(locale)}
                           >
