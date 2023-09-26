@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
-import SearchIcon from "@mui/icons-material/Search"
-import InputBase from "@mui/material/InputBase"
 import { styled, alpha } from "@mui/material/styles"
 import { useTranslation } from 'react-i18next'
+import SearchIcon from "@mui/icons-material/Search"
+import InputBase from "@mui/material/InputBase"
 import './Nav.scss'
 
 const hashTags = [
@@ -59,7 +59,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 const Nav = () => {
-  const { t, i18n } = useTranslation()
+  const { t } = useTranslation()
   const [activeHashTag, setActiveHashTag] = useState(0)
   const [isHeaderFixed, setIsHeaderFixed] = useState(false)
 
@@ -81,15 +81,15 @@ const Nav = () => {
 
   return (
     <nav className={`header ${isHeaderFixed ? 'sticky' : ''}`}>
-      <section style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", marginBottom: "15px" }}>
-        <article style={{ fontSize: "15px", margin: "5px 0px", fontWeight: "300" }}>
+      <section className="header-info-section">
+        <article className="note-count-wrapper">
           {t('header.nav.info.message.first')}
-          <span style={{ fontSize: "22px", fontWeight: "600", color: "#00754A" }}>250</span>
+          <span className="note-count">250</span>
           {t('header.nav.info.message.second')}
         </article>
-        <article style={{ fontSize: "13px", fontWeight: "300" }}>
+        <article className="search-message-wrapper">
           {t('header.nav.info.subMessage.first')}
-          <span style={{ fontSize: "15px", fontWeight: "600" }}>#{t('header.nav.info.subMessage.search')}</span>
+          <span className="search-word">#{t('header.nav.info.subMessage.search')}</span>
           {t('header.nav.info.subMessage.second')}
         </article>
       </section>
@@ -104,17 +104,12 @@ const Nav = () => {
           />
         </Search>
       </section>
-      <section className="header-filter-section" style={{ marginTop: "10px" }}>
+      <section className="header-filter-section">
         <ul>
           {hashTags.map((hashTag, index) => (
             <li 
               key={hashTag.id}
               style={{ 
-                fontSize: "14px", 
-                border: "1px solid #333", 
-                borderRadius: "25px", 
-                margin: "0px 5px", 
-                padding: "7px 12px", 
                 backgroundColor: activeHashTag === index ? "#000" : "#FFF", 
                 color: activeHashTag === index ? "#FFF" : "#000"
               }}

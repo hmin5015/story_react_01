@@ -16,6 +16,36 @@ nav {
     transition: all 0.9s ease;
   }
 
+  & .header-info-section {    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
+
+    & .note-count-wrapper {      
+      font-size: 15px;
+      font-weight: 300;
+      margin: 5px 0px;
+
+      & .note-count {
+        font-size: 22px;
+        font-weight: 600;
+        color: #00754A;
+      }
+    }
+
+    & .search-message-wrapper {      
+      font-size: 13px;
+      font-weight: 300;
+
+      & .search-word {        
+        font-size: 15px;
+        font-weight: 600;
+      }
+    }
+  }
+
   & .header-search-section {
     width: 100%;
     max-width: 25em;
@@ -25,9 +55,19 @@ nav {
   }
 
   & .header-filter-section {
+    margin-top: 10px;
+
     & ul {
       display: flex;
       flex-direction: row;
+
+      & li {
+        font-size: 14px; 
+        border: 1px solid #333; 
+        border-radius: 25px; 
+        margin: 0px 5px; 
+        padding: 7px 12px;
+      }
     }
   }
 }
