@@ -1,0 +1,42 @@
+.user-info-section {
+
+  & .user-info-top {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid #E5E5E5;
+    padding: 10px;
+
+    & .back-button {
+      border: none;
+      background-color: #FFF;
+      text-align: left;
+      padding: 10px 0px;
+    }
+  }
+
+  & .user-info-content {
+    display: flex;
+    flex-direction: column;
+    background-color: #F2F2F2;
+    padding: 10px;
+
+    & .action-button-wrapper {
+
+      & .join-now-button {
+        background-color: #00754A;
+        border: 1px solid #00754A;
+        border-radius: 25px;
+        padding: 10px;
+        color: #FFF;
+      }
+
+      & .sign-in-button {
+        background-color: #FFF;
+        border: 1px solid #FFF;
+        border-radius: 25px;
+        padding: 10px;
+        color: #00754A;
+      }
+    }
+  }
+}
